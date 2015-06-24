@@ -9,6 +9,8 @@ destination = "United Center, Chicago, Illinois"
 origin = URI.escape(origin)
 destination = URI.escape(destination)
 
+
+
 # Send an HTTP request to the Google Directions API
 url = "http://maps.googleapis.com/maps/api/directions/json?origin=#{origin}&destination=#{destination}&sensor=false"
 json_data = open(url).read
@@ -17,17 +19,17 @@ json_data = open(url).read
 # (You will need to figure out what kind of structure it is)
 data = JSON.parse(json_data)
 
-
 # 1. TO DO:
 # Replace the following 0 with an expression that will retrieve the total travel time
-total_time = data(["routes"] => "duration")
+
+total_time = data["routes"][0]["legs"][0]["duration"]["value"] / 60
 
 # Output the total drive time to the screen
 puts "Total travel time driving: #{total_time}"
 
 # 2. TO DO:
 # Replace the following 0 with an expression that will retrieve the total distance
-total_distance = data['routes'].count
+total_distance = (data["routes"][0]["legs"][0]["distance"]["value"] / 1609.344).round(2)
 
 # Output the total distance to the screen
 puts "Total distance traveled: #{total_distance}"
