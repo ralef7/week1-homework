@@ -18,4 +18,6 @@ planets = ['Mercury', 'Venus', 'Earth', 'Mars', 'Saturn', 'Jupiter', 'Uranus', '
 # You may NOT, of course, use any hardcoded planet names in your code :-)
 #
 # Your code goes here:
-#
+planets.each_with_index do |planet, counter|
+	puts "Planet #{counter+1}: #{planet}"
+end
